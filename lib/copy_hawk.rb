@@ -15,12 +15,8 @@ module CopyHawk
     end
 
     def preview_copy(label, lang=@defaultLang)
-      #xhttp.open("GET", "//localhost:3000/api/p/staging." + @token + "/" + label + "?lang="+lang+"&cache="+cacheKey, true);
-      #xhttp.setRequestHeader("Content-Type" => "text/plain");
-      #xhttp.send();
       begin
         response = @hawkApi.single_staging_script(@token, label, lang)
-        # HTTParty.get("https://www.google.com:3000/api/staging/#{@token}/#{label}?lang=#{lang}", headers: { "Content-Type" => "text/html" })
         process_response(response, label, lang)
       rescue HTTParty::Error, Net::ReadTimeout, SocketError, JSON::ParserError, Errno::ECONNREFUSED => e
         # Return a blank for any errors - 404 should return a specific error to show script is missing for that label & language
