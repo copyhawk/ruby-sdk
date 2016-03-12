@@ -2,7 +2,7 @@ require 'httparty'
 
 class HawkApi
   include HTTParty
-  @@base_uri = "http://localhost:3000/api"
+  @@base_uri = "http://app.copyhawk.co/api"
 
   def single_staging_script(token, label, lang)
     response = self.class.get("#{@@base_uri}/staging/#{token}/#{label}?lang=#{lang}",
